@@ -1,6 +1,7 @@
 import Data.LegalPerson;
 import Data.Person;
 import Data.PhysicalPerson;
+import Db.DataSaveRepositoryDb;
 import RepositoryMbk.Data.MbkResponse;
 import RepositoryMbk.RepositoryFile;
 import Service.PropertyService;
@@ -27,9 +28,10 @@ public class Program {
         });
 
 
-        //List<Terrorist> terror = Terrorist.ConvertEntityToTerrarist(terrorResponse.Terror);
+        DataSaveRepositoryDb db = new DataSaveRepositoryDb(PropertyService.DbConnectProperty);
 
-       // DataSaveRepositoryDb db = new DataSaveRepositoryDb(PropertyService.DbConnectProperty);
-       // db.AddTerror(terror);
+      db.AddLegalPerson(legalPerson);
+      db.AddPhysicalPerson(physicalPersons);
+
     }
 }
