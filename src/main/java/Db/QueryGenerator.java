@@ -39,7 +39,7 @@ public class QueryGenerator  {
 
     public String GetQueryInsertAddress() {
         return INSERT_INTO + TABLE_ADDRESS
-                + " (list_id,type_id,text_address,country_id, okato, index)"
+                + " (list_id,type_id,text_address,country_id,okato,index)"
                 + " VALUES(?,?,?,?,?,?);";
     }
 }

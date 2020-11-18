@@ -27,11 +27,9 @@ public class Program {
             legalPerson.addAll(LegalPerson.ConvertSubjectToLegalPerson(d.CollectionSubject, d.Date));
         });
 
-
         DataSaveRepositoryDb db = new DataSaveRepositoryDb(PropertyService.DbConnectProperty);
 
       db.AddLegalPerson(legalPerson);
       db.AddPhysicalPerson(physicalPersons);
-
     }
 }

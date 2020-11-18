@@ -66,7 +66,6 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
         }
     }
 
-
     private void AddPhysicalDocument(List<PhysicalPerson> persons, Connection con) throws SQLException {
         String query = _queryGenerator.GetQueryInsertPhysicalDocuments();
 
@@ -153,7 +152,7 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                     ps.setInt(parameterIndex++, p.Id);
                     ps.setInt(parameterIndex++, a.TypeAddress.Id);
                     ps.setString(parameterIndex++, a.TextAddress);
-                    ps.setObject(parameterIndex, GetCountryCode(a.Country));
+                    ps.setObject(parameterIndex++, GetCountryCode(a.Country));
                     ps.setString(parameterIndex++, a.Okato);
                     ps.setString(parameterIndex++, a.Index);
 

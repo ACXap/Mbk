@@ -68,7 +68,9 @@ public class PhysicalPerson extends Person {
     private String GetAllBirthPlace(RepositoryMbk.Data.PhysicalPerson fl) {
         List<String> birthPlace = new ArrayList<>();
 
-        birthPlace.add(fl.BirthPlace);
+        if (fl.BirthPlace != null && !fl.BirthPlace.isEmpty()) {
+            birthPlace.add(fl.BirthPlace);
+        }
 
         if (fl.ListOtherName != null && !fl.ListOtherName.isEmpty()) {
             birthPlace.addAll(fl.ListOtherName.stream().filter(p -> p.BirthPlace != null && !p.BirthPlace.isEmpty()).map(p -> p.BirthPlace).distinct().collect(Collectors.toList()));
