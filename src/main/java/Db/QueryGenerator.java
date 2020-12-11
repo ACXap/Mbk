@@ -4,10 +4,10 @@ package Db;
 public class QueryGenerator  {
 
     public QueryGenerator(String schema) {
-        TABLE_LEGAL = schema + "mbk_legal";
-        TABLE_PHYSICAL = schema + "mbk_physical";
-        TABLE_PHYSICAL_DOCUMENT = schema + "mbk_physical_document";
-        TABLE_ADDRESS = schema + "mbk_address";
+        TABLE_LEGAL = schema + "mvk_legal";
+        TABLE_PHYSICAL = schema + "mvk_physical";
+        TABLE_PHYSICAL_DOCUMENT = schema + "mvk_physical_document";
+        TABLE_ADDRESS = schema + "mvk_address";
     }
 
     //region PrivateField
