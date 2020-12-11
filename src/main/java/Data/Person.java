@@ -18,6 +18,7 @@ public abstract class Person {
         AllName = GetAllName(person);
     }
 
+    public int IdDb;
     public int Id;
     public List<Address> ListAddress;
     public Date DateDecision;

@@ -76,6 +76,7 @@ public class PhysicalPerson extends Person {
             birthPlace.addAll(fl.ListOtherName.stream().filter(p -> p.BirthPlace != null && !p.BirthPlace.isEmpty()).map(p -> p.BirthPlace).distinct().collect(Collectors.toList()));
         }
 
-        return birthPlace.stream().distinct().collect(Collectors.joining(SEPARATOR));
+        if (birthPlace.size() > 0) return birthPlace.stream().distinct().collect(Collectors.joining(SEPARATOR));
+        return null;
     }
 }

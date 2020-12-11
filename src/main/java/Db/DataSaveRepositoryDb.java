@@ -9,6 +9,7 @@ import RepositoryMbk.Data.Address;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -82,7 +83,9 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                     ps.setString(parameterIndex++, d.Series);
                     ps.setString(parameterIndex++, d.Number);
                     ps.setString(parameterIndex++, d.Organ);
-                    ps.setObject(parameterIndex, GetSqlDate(d.Date));
+                    ps.setObject(parameterIndex++, GetSqlDate(d.Date));
+                    ps.setString(parameterIndex++, d.TypeDocuments.Name);
+                    ps.setInt(parameterIndex++, p.IdDb);
 
                     ps.addBatch();
                 }
@@ -95,7 +98,9 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
     private void AddPhysical(List<PhysicalPerson> persons, Connection con) throws SQLException {
         String query = _queryGenerator.GetQueryInsertPhysical();
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        String[] generatedKeys = {"id"};
+
+        try (PreparedStatement ps = con.prepareStatement(query, generatedKeys)) {
 
             for (PhysicalPerson p : persons) {
 
@@ -112,13 +117,21 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                 ps.addBatch();
             }
             ps.executeBatch();
+
+            ResultSet keys = ps.getGeneratedKeys();
+            for (PhysicalPerson c : persons) {
+                keys.next();
+                c.IdDb = keys.getInt(1);
+            }
         }
     }
 
     private void AddLegal(List<LegalPerson> persons, Connection con) throws SQLException {
         String query = _queryGenerator.GetQueryInsertLegal();
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        String[] generatedKeys = {"id"};
+
+        try (PreparedStatement ps = con.prepareStatement(query, generatedKeys)) {
             for (LegalPerson p : persons) {
 
                 int parameterIndex = 1;
@@ -135,6 +148,12 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                 ps.addBatch();
             }
             ps.executeBatch();
+
+            ResultSet keys = ps.getGeneratedKeys();
+            for (LegalPerson c : persons) {
+                keys.next();
+                c.IdDb = keys.getInt(1);
+            }
         }
     }
 
@@ -155,6 +174,8 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                     ps.setObject(parameterIndex++, GetCountryCode(a.Country));
                     ps.setString(parameterIndex++, a.Okato);
                     ps.setString(parameterIndex++, a.Index);
+                    ps.setString(parameterIndex++, a.TypeAddress.Name);
+                    ps.setInt(parameterIndex++, p.IdDb);
 
                     ps.addBatch();
                 }
