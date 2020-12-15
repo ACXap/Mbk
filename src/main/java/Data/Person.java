@@ -1,7 +1,7 @@
 package Data;
 
-import RepositoryMbk.Data.Address;
-import RepositoryMbk.Data.Subject;
+import RepositoryMvk.Data.Address;
+import RepositoryMvk.Data.Subject;
 
 import java.util.Date;
 import java.util.List;

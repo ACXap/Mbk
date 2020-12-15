@@ -11,4 +11,6 @@ public interface ISaveDataRepository {
     void AddLegalPerson(List<LegalPerson> persons) throws SQLException;
 
     void AddPhysicalPerson(List<PhysicalPerson> persons) throws SQLException;
+
+    void DeleteData()throws SQLException;
 }

@@ -1,7 +1,7 @@
-package RepositoryMbk;
+package RepositoryMvk;
 
 import Interfaces.IXmlService;
-import RepositoryMbk.Data.MbkResponse;
+import RepositoryMvk.Data.MbkResponse;
 import Service.XmlService;
 
 import java.io.File;

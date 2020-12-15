@@ -1,6 +1,6 @@
 package Data;
 
-import RepositoryMbk.Data.Subject;
+import RepositoryMvk.Data.Subject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class LegalPerson extends Person {
     @Override
     protected String GetAllName(Subject person) {
         List<String> names = new ArrayList<>();
-        RepositoryMbk.Data.LegalPerson ul = person.Ul;
+        RepositoryMvk.Data.LegalPerson ul = person.Ul;
 
         names.add(ul.Name);
 

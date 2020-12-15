@@ -33,13 +33,21 @@ public class QueryGenerator  {
 
     public String GetQueryInsertPhysicalDocuments() {
         return INSERT_INTO + TABLE_PHYSICAL_DOCUMENT
-                + " (list_id,type_id,serial,number,organ,date_issue,document_type, person_id)"
+                + " (list_id,type_id,serial,number,organ,date_issue,document_type,person_id)"
                 + " VALUES(?,?,?,?,?,?,?,?);";
     }
 
     public String GetQueryInsertAddress() {
         return INSERT_INTO + TABLE_ADDRESS
-                + " (list_id,type_id,text_address,country_id,okato,index,address_type, person_id)"
+                + " (list_id,type_id,text_address,country_id,okato,index,address_type,person_id)"
                 + " VALUES(?,?,?,?,?,?,?,?);";
+    }
+
+    public String GetQueryDeleteData() {
+        String delete = "DELETE FROM ";
+        return delete + TABLE_LEGAL + ";" +
+                delete + TABLE_PHYSICAL + ";" +
+                delete + TABLE_PHYSICAL_DOCUMENT + ";" +
+                delete + TABLE_ADDRESS + ";";
     }
 }

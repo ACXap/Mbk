@@ -1,6 +1,6 @@
 package Data;
 
-import RepositoryMbk.Data.Subject;
+import RepositoryMvk.Data.Subject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +25,12 @@ public class PhysicalPerson extends Person {
     public final String AllBirthday;
     public final String AllBirthPlace;
     public final String Inn;
-    public final List<RepositoryMbk.Data.PhysicalPerson.Documents> Documents;
+    public final List<RepositoryMvk.Data.PhysicalPerson.Documents> Documents;
 
     @Override
     protected String GetAllName(Subject person) {
         List<String> names = new ArrayList<>();
-        RepositoryMbk.Data.PhysicalPerson fl = person.Fl;
+        RepositoryMvk.Data.PhysicalPerson fl = person.Fl;
 
         names.add(fl.Fio);
 
@@ -45,7 +45,7 @@ public class PhysicalPerson extends Person {
         return names.stream().distinct().collect(Collectors.joining(SEPARATOR));
     }
 
-    private String GetAllBirthday(RepositoryMbk.Data.PhysicalPerson fl) {
+    private String GetAllBirthday(RepositoryMvk.Data.PhysicalPerson fl) {
         List<String> birthdays = new ArrayList<>();
 
         if (fl.Birthday != null) {
@@ -65,7 +65,7 @@ public class PhysicalPerson extends Person {
         return null;
     }
 
-    private String GetAllBirthPlace(RepositoryMbk.Data.PhysicalPerson fl) {
+    private String GetAllBirthPlace(RepositoryMvk.Data.PhysicalPerson fl) {
         List<String> birthPlace = new ArrayList<>();
 
         if (fl.BirthPlace != null && !fl.BirthPlace.isEmpty()) {

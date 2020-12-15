@@ -1,4 +1,4 @@
-package RepositoryMbk.Data;
+package RepositoryMvk.Data;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

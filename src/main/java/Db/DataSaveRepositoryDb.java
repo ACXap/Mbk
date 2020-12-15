@@ -5,7 +5,7 @@ import Data.LegalPerson;
 import Data.Person;
 import Data.PhysicalPerson;
 import Interfaces.ISaveDataRepository;
-import RepositoryMbk.Data.Address;
+import RepositoryMvk.Data.Address;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,6 +67,28 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
         }
     }
 
+    @Override
+    public void DeleteData() throws SQLException {
+        Connection con = _dbConnectProperty.GetConnection();
+
+        try {
+            con.setAutoCommit(false);
+
+            String query = _queryGenerator.GetQueryDeleteData();
+            try (PreparedStatement ps = con.prepareStatement(query)) {
+                ps.execute();
+            }
+
+            con.commit();
+        } catch (SQLException sex) {
+            con.rollback();
+            con.close();
+            throw sex;
+        } finally {
+            con.close();
+        }
+    }
+
     private void AddPhysicalDocument(List<PhysicalPerson> persons, Connection con) throws SQLException {
         String query = _queryGenerator.GetQueryInsertPhysicalDocuments();
 
@@ -75,7 +97,7 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
             for (PhysicalPerson p : persons) {
                 if (p.Documents == null || p.Documents.isEmpty()) continue;
 
-                for (RepositoryMbk.Data.PhysicalPerson.Documents d : p.Documents) {
+                for (RepositoryMvk.Data.PhysicalPerson.Documents d : p.Documents) {
                     int parameterIndex = 1;
 
                     ps.setInt(parameterIndex++, p.Id);
