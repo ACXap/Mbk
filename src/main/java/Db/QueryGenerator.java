@@ -39,8 +39,8 @@ public class QueryGenerator  {
 
     public String GetQueryInsertAddress() {
         return INSERT_INTO + TABLE_ADDRESS
-                + " (list_id,type_id,text_address,country_id,okato,index,address_type,person_id)"
-                + " VALUES(?,?,?,?,?,?,?,?);";
+                + " (list_id,type_id,text_address,country_id,okato,index,address_type,person_id,country_name)"
+                + " VALUES(?,?,?,?,?,?,?,?,?);";
     }
 
     public String GetQueryDeleteData() {

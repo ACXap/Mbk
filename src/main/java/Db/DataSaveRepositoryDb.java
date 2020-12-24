@@ -198,6 +198,7 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
                     ps.setString(parameterIndex++, a.Index);
                     ps.setString(parameterIndex++, a.TypeAddress.Name);
                     ps.setInt(parameterIndex++, p.IdDb);
+                    ps.setObject(parameterIndex++, GetCountryName(a.Country));
 
                     ps.addBatch();
                 }
@@ -211,6 +212,12 @@ public class DataSaveRepositoryDb implements ISaveDataRepository {
         if (country == null) return null;
 
         return country.Code;
+    }
+
+    private Object GetCountryName(Address.Country country){
+        if(country == null) return  null;
+
+        return  country.Name;
     }
 
     private Object GetSqlDate(Date date) {
