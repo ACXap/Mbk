@@ -2,7 +2,9 @@ import Data.LegalPerson;
 import Data.Person;
 import Data.PhysicalPerson;
 import Db.DataSaveRepositoryDb;
-import RepositoryMvk.Data.MbkResponse;
+import Interfaces.IRepositoryMvk;
+import RepositoryMvk.Data.MvkResponse;
+import RepositoryMvk.FactoryRepository;
 import RepositoryMvk.RepositoryFile;
 import Service.PropertyService;
 
@@ -16,13 +18,13 @@ public class Program {
         PropertyService.Initialization();
         Person.SEPARATOR = PropertyService.DbSeparator;
 
-        RepositoryFile rf = new RepositoryFile(PropertyService.PathTempFile);
-        MbkResponse mbkResponse = rf.GetResponse("temp/" + "mvk.xml");
+        IRepositoryMvk rf = new FactoryRepository().GetRepository(args);
+        MvkResponse mvkResponse = rf.GetResponse();
 
         List<PhysicalPerson> physicalPersons = new ArrayList<>();
         List<LegalPerson> legalPerson = new ArrayList<>();
 
-        mbkResponse.Mbk.forEach(d -> {
+        mvkResponse.Mbk.forEach(d -> {
             physicalPersons.addAll(PhysicalPerson.ConvertSubjectToPhysicalPerson(d.CollectionSubject, d.Date));
             legalPerson.addAll(LegalPerson.ConvertSubjectToLegalPerson(d.CollectionSubject, d.Date));
         });

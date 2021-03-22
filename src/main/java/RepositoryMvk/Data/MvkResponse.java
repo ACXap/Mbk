@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.Date;
 import java.util.List;
 
-public class MbkResponse {
+public class MvkResponse {
 
     @JacksonXmlProperty(localName = "ВерсияФормата")
     public String Version;
